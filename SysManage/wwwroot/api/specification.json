@@ -399,62 +399,6 @@
         }
       }
     },
-    "/api/Order": {
-      "get": {
-        "tags": [
-          "Order"
-        ],
-        "operationId": "Order_GetAll",
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/OrderLookupDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Order"
-        ],
-        "operationId": "Order_Upsert",
-        "requestBody": {
-          "x-name": "command",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpsertOrderCommand"
-              }
-            }
-          },
-          "required": true,
-          "x-position": 1
-        },
-        "responses": {
-          "204": {
-            "description": ""
-          },
-          "default": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Order/{id}": {
       "get": {
         "tags": [
@@ -508,6 +452,41 @@
             "description": ""
           },
           "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Order": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "operationId": "Order_Upsert",
+        "requestBody": {
+          "x-name": "command",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpsertOrderCommand"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "default": {
             "description": "",
             "content": {
               "application/json": {
@@ -1532,61 +1511,6 @@
           }
         }
       },
-      "OrderLookupDto": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "orderDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "requiredDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "shippedDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "shipVia": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "freight": {
-            "type": "number",
-            "format": "decimal",
-            "nullable": true
-          },
-          "shipName": {
-            "type": "string",
-            "nullable": true
-          },
-          "shipAddress": {
-            "type": "string",
-            "nullable": true
-          },
-          "shipCity": {
-            "type": "string",
-            "nullable": true
-          },
-          "shipRegion": {
-            "type": "string",
-            "nullable": true
-          },
-          "shipPostalCode": {
-            "type": "string",
-            "nullable": true
-          },
-          "shipCountry": {
-            "type": "string",
-            "nullable": true
-          }
-        }
-      },
       "OrderDetailVm": {
         "type": "object",
         "additionalProperties": false,
@@ -2296,6 +2220,7 @@
       },
       "AuditableEntity": {
         "type": "object",
+        "x-abstract": true,
         "additionalProperties": false,
         "properties": {
           "createdBy": {
@@ -2326,10 +2251,6 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "id": {
-                "type": "integer",
-                "format": "int32"
-              },
               "longitude": {
                 "type": "number",
                 "format": "double"
