@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Name="Simple List" ReportInfo.Author="Fast Reports Inc" ReportInfo.Description="Demonstrates First FastReport" ReportInfo.Created="01/17/2008 03:05:57" ReportInfo.Modified="04/05/2020 20:28:47" ReportInfo.CreatorVersion="2020.1.0.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void Cell59_Click(object sender, EventArgs e)
+    {
+      
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <TableDataSource Name="PaimentResumeDTOs" ReferenceName="PaimentResumeDTOs.PaimentResumeDTOs" DataType="System.Int32" Enabled="true">
+      <Column Name="ModePaiementId" DataType="System.Int32"/>
+      <Column Name="ModePaiement" DataType="System.String"/>
+      <Column Name="PurchaseTotal" DataType="System.Decimal"/>
+      <Column Name="SalesTotal" DataType="System.Decimal"/>
+      <Column Name="ChargeTotal" DataType="System.Decimal"/>
+      <Column Name="Total" DataType="System.Decimal"/>
+    </TableDataSource>
+    <TableDataSource Name="view_venete_jclientDto" ReferenceName="view_venete_jclientDto.view_venete_jclientDto" DataType="System.Int32" Enabled="true">
+      <Column Name="Id" DataType="System.Int32"/>
+      <Column Name="Date" DataType="System.DateTime"/>
+      <Column Name="Recu" DataType="System.String"/>
+      <Column Name="Client" DataType="System.String"/>
+      <Column Name="Desugnation" DataType="System.String"/>
+      <Column Name="Montant" DataType="System.Decimal"/>
+      <Column Name="ModePaiment" DataType="System.String"/>
+    </TableDataSource>
+    <Parameter Name="time" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page2" Guides="0,718.2,236.25,189,538.65,94.5,207.9,387.45,510.3,614.25,708.75,198.45,141.75,274.05,623.7,226.8,217.35" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle2" Width="718.2" Height="37.8" Guides="0,28.35">
+      <TextObject Name="Text51" Width="718.2" Height="28.35" Anchor="Top, Left, Right" Fill.Color="WhiteSmoke" Cursor="Hand" Hyperlink.Value="http://fast.report/aa29e" Hyperlink.OpenLinkInNewTab="true" Text="GM-Sheduler" VertAlign="Center" Font="Tahoma, 10pt, style=Bold, Underline" TextFill.Color="Blue"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="40.09" Width="718.2" Height="28.35" Guides="0,18.9">
+      <TextObject Name="Text34" Width="236.25" Height="18.9" Text="[Report.ReportInfo.Description]&#13;&#10;" Font="Arial, 10pt"/>
+    </PageHeaderBand>
+    <GroupHeaderBand Name="GroupHeader3" Top="70.72" Width="718.2" Height="85.05" Guides="0,28.35,56.7,75.6,47.25,18.9" Condition="[view_venete_jclientDto.Date]" SortOrder="None">
+      <ShapeObject Name="Shape1" Left="189" Width="349.65" Height="28.35" Fill="PathGradient" Fill.CenterColor="LightCoral" Fill.EdgeColor="White" Fill.Style="Elliptic" Shape="RoundRectangle"/>
+      <TextObject Name="Text2" Top="56.7" Width="94.5" Height="18.9" Border.Lines="All" Text="Date" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text3" Left="94.5" Top="56.7" Width="113.4" Height="18.9" Border.Lines="All" Text="Reçu/Operation" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text4" Left="207.9" Top="56.7" Width="179.55" Height="18.9" Border.Lines="All" Text="Client" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text5" Left="387.45" Top="56.7" Width="122.85" Height="18.9" Border.Lines="All" Text="Désignation " VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text6" Left="510.3" Top="56.7" Width="103.95" Height="18.9" Border.Lines="All" Text="Montant" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text7" Left="614.25" Top="56.7" Width="103.95" Height="18.9" Border.Lines="All" Text="Mode" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text54" Top="28.35" Width="708.75" Height="18.9" Text="Vente" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+      <TextObject Name="Text55" Left="198.45" Width="340.2" Height="18.9" Text="List des transaction" HorzAlign="Center" VertAlign="Center" Font="Tahoma, 14pt, style=Bold"/>
+      <DataBand Name="Data1" Top="158.06" Width="718.2" Height="28.35" Guides="0,28.35" DataSource="view_venete_jclientDto">
+        <TextObject Name="Text35" Width="94.5" Height="28.35" Border.Lines="All" Text="[view_venete_jclientDto.Date]" Format="Date" Format.Format="MM/dd/yy" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text36" Left="94.5" Width="113.4" Height="28.35" Border.Lines="All" Text="[view_venete_jclientDto.Recu]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text37" Left="207.9" Width="179.55" Height="28.35" Border.Lines="All" Text="[view_venete_jclientDto.Client]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text38" Left="387.45" Width="122.85" Height="28.35" Border.Lines="All" Text="[view_venete_jclientDto.Desugnation]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text39" Left="510.3" Width="103.95" Height="28.35" Border.Lines="All" Text="[view_venete_jclientDto.Montant]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text40" Left="614.25" Width="103.95" Height="28.35" Border.Lines="All" Text="[view_venete_jclientDto.ModePaiment]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter3" Top="188.69" Width="718.2"/>
+    </GroupHeaderBand>
+    <GroupHeaderBand Name="GroupHeader4" Top="190.98" Width="718.2" Height="66.15" Guides="37.8,56.7,9.45,28.35" Condition="[PaimentResumeDTOs.ModePaiementId]" SortOrder="None">
+      <TextObject Name="Text8" Top="37.8" Width="141.75" Height="18.9" Border.Lines="All" Text="Mode de paiment" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text41" Left="141.75" Top="37.8" Width="132.3" Height="18.9" Border.Lines="All" Text="Total ventes" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text42" Left="274.05" Top="37.8" Width="113.4" Height="18.9" Border.Lines="All" Text="Total d'achat" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text46" Left="387.45" Top="37.8" Width="122.85" Height="18.9" Border.Lines="All" Text="Total charges" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text48" Left="510.3" Top="37.8" Width="113.4" Height="18.9" Border.Lines="All" Text="Total" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      <TextObject Name="Text53" Top="9.45" Width="226.8" Height="18.9" Text="Résumé " Font="Tahoma, 14pt, style=Bold"/>
+      <DataBand Name="Data3" Top="259.41" Width="718.2" Height="28.35" Guides="0,18.9" DataSource="PaimentResumeDTOs">
+        <TextObject Name="Text43" Left="274.05" Width="113.4" Height="18.9" Border.Lines="All" Text="[PaimentResumeDTOs.PurchaseTotal]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text44" Left="141.75" Width="132.3" Height="18.9" Border.Lines="All" Text="[PaimentResumeDTOs.SalesTotal]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text45" Width="141.75" Height="18.9" Border.Lines="All" Text="[PaimentResumeDTOs.ModePaiement]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text47" Left="387.45" Width="122.85" Height="18.9" Border.Lines="All" Text="[PaimentResumeDTOs.ChargeTotal]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+        <TextObject Name="Text49" Left="510.3" Width="113.4" Height="18.9" Border.Lines="All" Text="[PaimentResumeDTOs.Total]" VertAlign="Center" Font="Arial, 9pt, style=Bold"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter4" Top="290.05" Width="718.2" Height="18.9"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter2" Top="311.24" Width="718.2" Height="28.35" Guides="0,28.35">
+      <TextObject Name="Text52" Left="623.7" Width="94.5" Height="28.35" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Tahoma, 8pt"/>
+      <TextObject Name="Text50" Width="217.35" Height="28.35" Cursor="Hand" Hyperlink.Value="https://www.youtube.com" Text="Generated by GM-Sheduler from GM-SOFT" VertAlign="Center" Font="Tahoma, 8pt, style=Underline" TextFill.Color="Blue"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>
